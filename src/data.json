@@ -1,0 +1,88 @@
+{
+    "HEADER": [
+        {
+            "letter": "R",
+            "delay": 0
+        },
+        {
+            "letter": "o",
+            "delay": 10
+        },
+        {
+            "letter": "ck",
+            "delay": 0
+        },
+        {
+            "letter": "",
+            "delay": 0
+        },
+        {
+            "letter": "Pa",
+            "delay": 0
+        },
+        {
+            "letter": "pe",
+            "delay": 5
+        },
+        {
+            "letter": "r",
+            "delay": 0
+        },
+        {
+            "letter": "",
+            "delay": 0
+        },
+        {
+            "letter": "S",
+            "delay": 5
+        },
+        {
+            "letter": "ci",
+            "delay": 0
+        },
+        {
+            "letter": "s",
+            "delay": 2.5
+        },
+        {
+            "letter": "s",
+            "delay": 0
+        },
+        {
+            "letter": "ors",
+            "delay": 0
+        }
+    ],
+    "WINS": [
+        {
+            "letter": "Wi",
+            "delay": 0
+        },
+        {
+            "letter": "n",
+            "delay": 5
+        },
+        {
+            "letter": "s",
+            "delay": 0
+        }
+    ],
+    "LOSSES": [
+        {
+            "letter": "Lo",
+            "delay": 0
+        },
+        {
+            "letter": "s",
+            "delay": 2.5
+        },
+        {
+            "letter": "se",
+            "delay": 0
+        },
+        {
+            "letter": "s",
+            "delay": 3
+        }
+    ]
+}
