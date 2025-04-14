@@ -53,10 +53,24 @@
             "delay": 0
         }
     ],
-    "WINS": [
+    "WINS_ONE": [
+        {
+            "letter": "W",
+            "delay": 2
+        },
+        {
+            "letter": "in",
+            "delay": 0
+        },
+        {
+            "letter": "s",
+            "delay": 0
+        }
+    ],
+    "WINS_TWO": [
         {
             "letter": "Wi",
-            "delay": 0
+            "delay": 2
         },
         {
             "letter": "n",
@@ -67,7 +81,7 @@
             "delay": 0
         }
     ],
-    "LOSSES": [
+    "LOSSES_ONE": [
         {
             "letter": "Lo",
             "delay": 0
@@ -83,6 +97,20 @@
         {
             "letter": "s",
             "delay": 3
+        }
+    ],
+    "LOSSES_TWO": [
+        {
+            "letter": "Los",
+            "delay": 0
+        },
+        {
+            "letter": "s",
+            "delay": 3
+        },
+        {
+            "letter": "es",
+            "delay": 0
         }
     ]
 }

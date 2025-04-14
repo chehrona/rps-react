@@ -1,12 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-export const PlayerContainer = styled.div`
+export const MainContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    background-color: green;
+    padding: 0rem 2rem;
 `;
 
 export const InnerContainer = styled.div`
@@ -30,11 +32,13 @@ export const IconContainer = styled.div`
     display: flex;
 `;
 
-export const CustomIcon = styled(FontAwesomeIcon)<{ $color: string }>`
+export const CustomIcon = styled(FontAwesomeIcon)`
     height: var(--subtitle-size);
     width: var(--subtitle-size);
-    color: ${({ $color }) => $color};
-    filter: ${({ $color }) => `drop-shadow(0rem 0rem 0.5rem ${$color})`};
+    /* color: rgb(48, 47, 47); */
+    background-color: transparent;
+    -webkit-text-stroke: 2px var(--primary-pink);
+    text-shadow: 0px 0px 20px var(--primary-pink);
 `;
 
 export const ScoreContainer = styled.div`
@@ -42,4 +46,16 @@ export const ScoreContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+`;
+
+export const ScoreWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Score = styled.div`
+    font-size: var(--body-size);
+    color: var(--primary-white);
+    margin-left: 0.75rem;
 `;

@@ -343,7 +343,6 @@ export const HeaderContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0.75rem auto 0.25rem;
     width: 36rem;
     align-items: center;
 `;
@@ -365,7 +364,6 @@ export const HeaderSection = styled.div`
 
 export const HeaderLetter = styled.div<HeaderLetterProps>`
     font-size: ${({ $font }) => $font && `${$font}`};
-    font-family: clubSign;
     text-align: center;
     margin: 0 auto;
     display: inline-flex;

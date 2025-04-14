@@ -18,13 +18,17 @@ body *,
 body *:before,
 body *:after {
     box-sizing: border-box;
+    font-family: clubSign;
 }
 
 :root {
     --primary-blue: rgb(0, 255, 251);
     --primary-pink: rgb(253, 4, 154);
     --primary-white: rgb(255, 255, 255);
+    --primary-yellow: rgb(229, 247, 31);
+    --primary-grey: rgb(35, 33, 33);
 
     --title-size: 6.5rem;
-    --body-size: 5.625rem;
+    --subtitle-size: 5.625rem;
+    --body-size: 3.75rem;
 }

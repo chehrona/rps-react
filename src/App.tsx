@@ -1,15 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Header from './components/header/Header';
-import PlayerBoard from './components/playerBoard/PlayerBoard';
+import GameBody from './components/gameBody/GameBody';
+import { MainContainer } from './appStyles';
 
 function App() {
     return (
-        <div className="App">
+        <MainContainer>
             <Header />
-            <PlayerBoard />
-        </div>
+            <GameBody />
+        </MainContainer>
     );
 }
 
