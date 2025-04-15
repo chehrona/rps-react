@@ -365,8 +365,21 @@ export const CustomInputField = styled.input`
     border: none;
     font-size: 2.75rem;
     font-family: clubSign;
+    padding: 0.5rem;
+    color: var(--primary-white);
 
     &::placeholder {
         color: var(--primary-white);
+        opacity: 0.5;
     }
+`;
+
+export const CustomButton = styled.button`
+    color: var(--primary-green);
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 2.75rem;
+    font-family: clubSign;
+    outline: none;
+    border: none;
 `;

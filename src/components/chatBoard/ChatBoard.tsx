@@ -28,7 +28,7 @@ import {
 const ChatBoard: React.FC = () => {
     return (
         <MainContainer>
-            <AnimatedBorder delay={2.5}>
+            <AnimatedBorder delay={4}>
                 <InnerContainer>
                     <IconContainer>
                         <CustomIcon
