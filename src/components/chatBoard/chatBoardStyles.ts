@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-export const PlayerContainer = styled.div`
+export const MainContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28%;
+    width: 100%;
     height: 100%;
     flex-direction: column;
     gap: 1rem;

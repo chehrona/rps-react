@@ -7,14 +7,16 @@ import PlayerBoardOne from '../playerBoard/PlayerBoardOne';
 import PlayerBoardTwo from '../playerBoard/PlayerBoardTwo';
 
 // Styled components
-import { MainContainer } from './gameBodyStyles';
+import { BodyContainer } from './gameBodyStyles';
+import ChatBoard from '../chatBoard/ChatBoard';
 
 const GameBody: React.FC = () => {
     return (
-        <MainContainer>
+        <BodyContainer>
             <PlayerBoardOne />
+            <ChatBoard />
             <PlayerBoardTwo />
-        </MainContainer>
+        </BodyContainer>
     );
 };
 

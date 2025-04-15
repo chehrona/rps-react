@@ -8,7 +8,7 @@ import {
     faHandFist,
     faHand,
     faHandPeace,
-    faUserTie,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Custom components
@@ -17,21 +17,19 @@ import ScoreBoard from '../scoreBoard/ScoreBoard';
 
 // Styled components
 import {
-    PlayerContainer,
+    MainContainer,
     PlayerName,
     IconContainer,
     InnerContainer,
-    ScoreContainer,
     CustomIcon,
-} from './playerBoardStyles';
+    ScoreContainer,
+} from './chatBoardStyles';
 
-const PlayerBoardTwo: React.FC = () => {
+const ChatBoard: React.FC = () => {
     return (
-        <PlayerContainer>
-            <CustomIcon icon={faUserTie} $color={'var(--primary-purple)'} />
+        <MainContainer>
             <AnimatedBorder delay={2.5}>
                 <InnerContainer>
-                    <PlayerName>Player 2</PlayerName>
                     <IconContainer>
                         <CustomIcon
                             icon={faHandFist}
@@ -52,8 +50,8 @@ const PlayerBoardTwo: React.FC = () => {
                     </ScoreContainer>
                 </InnerContainer>
             </AnimatedBorder>
-        </PlayerContainer>
+        </MainContainer>
     );
 };
 
-export default PlayerBoardTwo;
+export default ChatBoard;

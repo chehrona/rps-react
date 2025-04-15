@@ -1,13 +1,14 @@
 import Header from './components/header/Header';
 import GameBody from './components/gameBody/GameBody';
-import { MainContainer } from './appStyles';
+import NameBar from './components/nameBar/NameBar';
 
-function App() {
+function App(): React.JSX.Element {
     return (
-        <MainContainer>
+        <div className="app">
             <Header />
+            <NameBar />
             <GameBody />
-        </MainContainer>
+        </div>
     );
 }
 

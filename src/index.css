@@ -3,22 +3,25 @@
     src: url('/public/fonts/NightVibesFreeVersion-8MglA.otf') format('opentype');
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     background-image: url('/public/images/background.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
     box-sizing: border-box;
-    margin: 0rem;
-    padding: 0rem;
-    font-size: 16px;
+    font-family: clubSign;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
-body *,
-body *:before,
-body *:after {
+body * {
     box-sizing: border-box;
-    font-family: clubSign;
 }
 
 :root {
@@ -27,8 +30,22 @@ body *:after {
     --primary-white: rgb(255, 255, 255);
     --primary-yellow: rgb(229, 247, 31);
     --primary-grey: rgb(35, 33, 33);
+    --primary-orange: rgb(255, 187, 0);
+    --primary-green: rgb(4, 253, 16);
+    --primary-purple: rgb(147, 74, 255);
 
     --title-size: 6.5rem;
     --subtitle-size: 5.625rem;
     --body-size: 3.75rem;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
 }

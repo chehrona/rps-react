@@ -28,22 +28,22 @@ import {
 const PlayerBoardOne: React.FC = () => {
     return (
         <PlayerContainer>
-            <CustomIcon icon={faUser} $color={'var(--primary-purple'} />
+            <CustomIcon icon={faUser} $color={'var(--primary-purple)'} />
             <AnimatedBorder delay={2.5}>
                 <InnerContainer>
                     <PlayerName>Player 1</PlayerName>
                     <IconContainer>
                         <CustomIcon
                             icon={faHandFist}
-                            $color={'var(--primary-yellow'}
+                            $color={'var(--primary-yellow)'}
                         />
                         <CustomIcon
                             icon={faHand}
-                            $color={'var(--primary-purple'}
+                            $color={'var(--primary-green)'}
                         />
                         <CustomIcon
                             icon={faHandPeace}
-                            $color={'var(--primary-purple'}
+                            $color={'var(--primary-orange)'}
                         />
                     </IconContainer>
                     <ScoreContainer>
