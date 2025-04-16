@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Hooks
+import { useGlobalData } from '../../hooks/usePlayerData';
+
 // Data
 import data from '../../data.json';
 
@@ -26,12 +29,17 @@ import {
 } from './playerBoardStyles';
 
 const PlayerBoardOne: React.FC = () => {
+    const { players } = useGlobalData();
     return (
         <PlayerContainer>
             <CustomIcon icon={faUser} $color={'var(--primary-purple)'} />
             <AnimatedBorder delay={2.5}>
                 <InnerContainer>
-                    <PlayerName>Player 1</PlayerName>
+                    <PlayerName>
+                        {players.one.name.length === 0
+                            ? 'Player 1'
+                            : players.one.name}
+                    </PlayerName>
                     <IconContainer>
                         <CustomIcon
                             icon={faHandFist}

@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components
 import AnimatedBorder from '../animatedBorder/AnimatedBorder';
-
-// Types
-import { NameBarProps } from './types';
 
 // Styled components
 import {
@@ -14,7 +11,9 @@ import {
     CustomButton,
 } from './nameBarStyles';
 
-const NameBar: React.FC<NameBarProps> = ({ setPlayerName }) => {
+const NameBar: React.FC = () => {
+    const [playerName, setPlayerName] = useState('');
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPlayerName(e.target.value);
     };
@@ -30,6 +29,7 @@ const NameBar: React.FC<NameBarProps> = ({ setPlayerName }) => {
                     <CustomInputField
                         placeholder={'Your name'}
                         onChange={(e) => handleChange(e)}
+                        value={playerName}
                     />
                     <CustomButton onClick={handleClick}>Start</CustomButton>
                 </InnerContainer>
