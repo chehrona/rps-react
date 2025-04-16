@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, ref } from 'firebase/database';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,3 +14,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+
+export const playersRef = ref(db, 'players');
+export const playerOneRef = ref(db, 'players/1');
+export const playerTwoRef = ref(db, 'players/2');
+export const turnRef = ref(db, 'turn');
+export const chatRef = ref(db, 'chat');

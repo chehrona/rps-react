@@ -382,4 +382,6 @@ export const CustomButton = styled.button`
     font-family: clubSign;
     outline: none;
     border: none;
+    padding: 0rem;
+    margin: 0rem;
 `;

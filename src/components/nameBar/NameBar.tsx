@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { ref, set } from 'firebase/database';
+import { db } from '../../utils/firebase';
+
+// Hooks
+import { useGlobalData } from '../../hooks/usePlayerData';
 
 // Components
 import AnimatedBorder from '../animatedBorder/AnimatedBorder';
@@ -12,6 +17,7 @@ import {
 } from './nameBarStyles';
 
 const NameBar: React.FC = () => {
+    const { players } = useGlobalData();
     const [playerName, setPlayerName] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +25,21 @@ const NameBar: React.FC = () => {
     };
 
     const handleClick = () => {
-        console.log('start the game');
+        if (players.one.connected) {
+            set(ref(db, 'players/2'), {
+                name: playerName,
+                losses: 0,
+                wins: 0,
+            });
+        } else {
+            set(ref(db, 'players/1'), {
+                name: playerName,
+                losses: 0,
+                wins: 0,
+            });
+        }
+
+        setPlayerName('');
     };
 
     return (

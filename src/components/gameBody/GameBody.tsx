@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// Hooks
+import { useGlobalData } from '../../hooks/usePlayerData';
 
 // Data
 import data from '../../data.json';
@@ -11,11 +14,21 @@ import { BodyContainer } from './gameBodyStyles';
 import ChatBoard from '../chatBoard/ChatBoard';
 
 const GameBody: React.FC = () => {
+    const { players } = useGlobalData();
+    const [loading, setLoading] = useState('');
+
+    if (
+        players.one.choice.length &&
+        players.two.connected &&
+        !players.two.choice.length
+    ) {
+        setLoading('2');
+    }
     return (
         <BodyContainer>
             <PlayerBoardOne />
             <ChatBoard />
-            <PlayerBoardTwo />
+            <PlayerBoardTwo loading={loading} />
         </BodyContainer>
     );
 };

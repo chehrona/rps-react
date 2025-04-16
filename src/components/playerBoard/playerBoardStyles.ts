@@ -28,12 +28,6 @@ export const PlayerName = styled.div`
     font-size: var(--subtitle-size);
 `;
 
-export const IconContainer = styled.div`
-    display: flex;
-    gap: 1rem;
-    padding: 2rem 0.5rem 4rem 0.5rem;
-`;
-
 export const CustomIcon = styled(FontAwesomeIcon)<{ $color: string }>`
     height: var(--subtitle-size);
     width: var(--subtitle-size);

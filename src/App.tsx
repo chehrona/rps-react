@@ -1,25 +1,34 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { db } from './utils/firebase';
+import { onValue } from 'firebase/database';
+import { playersRef } from './utils/firebase';
 
 import Header from './components/header/Header';
 import GameBody from './components/gameBody/GameBody';
 import NameBar from './components/nameBar/NameBar';
 import { DataContext } from './hooks/usePlayerData';
-import { DataContextType } from './hooks/types';
-
-const playersRef = ref(db, 'players');
-const playerOneRef = ref(db, 'players/1');
-const playerTwoRef = ref(db, 'players/2');
-const turnRef = ref(db, 'turn');
-let chatRef = ref(db, 'chat');
+import { DataContextType, PlayersObj } from './hooks/types';
 
 function App(): React.JSX.Element {
-    const initialValues = {
-        one: { name: '', connected: false, choice: '', wins: 0, losses: 0 },
-        two: { name: '', connected: false, choice: '', wins: 0, losses: 0 },
+    const initialValues: PlayersObj = {
+        one: {
+            id: 1,
+            name: '',
+            connected: false,
+            choice: '',
+            wins: 0,
+            losses: 0,
+        },
+        two: {
+            id: 2,
+            name: '',
+            connected: false,
+            choice: '',
+            wins: 0,
+            losses: 0,
+        },
     };
-    const [players, setPlayers] = useState(initialValues);
+    const [players, setPlayers] = useState<PlayersObj>(initialValues);
+    const [turn, setTurn] = useState<1 | 2 | 3>(3);
     const [game, setGame] = useState({
         turn: null as string | null,
         hasPlayerOneChosen: false,
@@ -30,13 +39,14 @@ function App(): React.JSX.Element {
         () => ({
             players,
             setPlayers,
+            turn,
+            setTurn,
         }),
         [players, setPlayers]
     );
 
     useEffect(() => {
-        const query = ref(db, 'players');
-        return onValue(query, (snapshot) => {
+        return onValue(playersRef, (snapshot) => {
             const data = snapshot.val();
 
             if (data === null) {
