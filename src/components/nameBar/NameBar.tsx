@@ -51,6 +51,10 @@ const NameBar: React.FC = () => {
                 losses: 0,
                 wins: 0,
             });
+
+            set(turnRef, {
+                turn: 1,
+            });
         }
 
         // Prevents entering another name.

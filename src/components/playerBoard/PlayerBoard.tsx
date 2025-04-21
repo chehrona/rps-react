@@ -31,11 +31,6 @@ const PlayerBoard: React.FC<PlayerBoardProps> = ({ playerNumber }) => {
     } = useGame();
     const playerData = playerNumber === 1 ? playerOneData : playerTwoData;
 
-    // console.log(playerId, 'player id ****');
-    // console.log(playerData, 'player id ****');
-    console.log(playerOneData, 'playerData 1');
-    console.log(playerTwoData, 'playerData 2');
-
     return (
         <PlayerContainer id={`${playerNumber}`}>
             <CustomIcon
