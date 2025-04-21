@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export type GameEnum = 1 | 2 | 3;
-export type ChoiceEnum = 'r' | 'p' | 's' | '';
+export type ChoiceEnum = 'r' | 'p' | 's' | '' | 'w' | 'c';
 
 export type PlayerDataType = {
     name: string;
