@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { update, ref } from 'firebase/database';
-import { db } from '../../utils/firebase';
+import React from 'react';
 import { useGame } from '../../hooks/useGame';
 import AnimatedBorder from '../animatedBorder/AnimatedBorder';
 import ScoreBoard from '../scoreBoard/ScoreBoard';
@@ -14,21 +12,10 @@ import {
     CustomIcon,
 } from './playerBoardStyles';
 import data from '../../data.json';
-
-type PlayerBoardProps = {
-    playerNumber: 1 | 2;
-};
+import { PlayerBoardProps } from './types';
 
 const PlayerBoard: React.FC<PlayerBoardProps> = ({ playerNumber }) => {
-    const {
-        playerId,
-        playerOneData,
-        playerTwoData,
-        setPlayerOneData,
-        setPlayerTwoData,
-        turn,
-        setTurn,
-    } = useGame();
+    const { playerOneData, playerTwoData } = useGame();
     const playerData = playerNumber === 1 ? playerOneData : playerTwoData;
 
     return (
@@ -40,7 +27,7 @@ const PlayerBoard: React.FC<PlayerBoardProps> = ({ playerNumber }) => {
             <AnimatedBorder delay={2.5}>
                 <InnerContainer>
                     <PlayerName>{playerData.name}</PlayerName>
-                    {/* <ChoiceBoard choice="rock" /> */}
+                    <ChoiceBoard playerNumber={playerNumber} />
                     <ScoreContainer>
                         <ScoreBoard
                             letters={

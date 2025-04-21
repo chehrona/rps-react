@@ -1,5 +1,5 @@
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
 
 export const PlayerContainer = styled.div`
     display: flex;

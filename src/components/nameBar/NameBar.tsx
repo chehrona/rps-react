@@ -22,15 +22,7 @@ import {
 const NameBar: React.FC = () => {
     const [input, setInput] = useState('');
     const [isInputDisabled, setIsInputDisabled] = useState(false);
-    const {
-        isPlayerOneConnected,
-        isPlayerTwoConnected,
-        setPlayerOneData,
-        setPlayerId,
-        playerId,
-        setPlayerTwoData,
-        setTurn,
-    } = useGame();
+    const { isPlayerOneConnected, setDisabled } = useGame();
 
     const onNameEntered = () => {
         if (input === '') {
@@ -45,6 +37,8 @@ const NameBar: React.FC = () => {
                 losses: 0,
                 wins: 0,
             });
+
+            setDisabled(2);
         } else {
             set(playerOneRef, {
                 name: input,
@@ -55,6 +49,8 @@ const NameBar: React.FC = () => {
             set(turnRef, {
                 turn: 1,
             });
+
+            setDisabled(1);
         }
 
         // Prevents entering another name.

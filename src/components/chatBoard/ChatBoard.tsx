@@ -4,12 +4,7 @@ import React from 'react';
 import data from '../../data.json';
 
 // Native components
-import {
-    faHandFist,
-    faHand,
-    faHandPeace,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 // Custom components
 import AnimatedBorder from '../animatedBorder/AnimatedBorder';
@@ -28,27 +23,9 @@ import {
 const ChatBoard: React.FC = () => {
     return (
         <MainContainer>
+            <CustomIcon icon={faMessage} $color={'var(--primary-purple)'} />
             <AnimatedBorder delay={4}>
-                <InnerContainer>
-                    <IconContainer>
-                        <CustomIcon
-                            icon={faHandFist}
-                            $color={'var(--primary-yellow)'}
-                        />
-                        <CustomIcon
-                            icon={faHand}
-                            $color={'var(--primary-green)'}
-                        />
-                        <CustomIcon
-                            icon={faHandPeace}
-                            $color={'var(--primary-orange)'}
-                        />
-                    </IconContainer>
-                    <ScoreContainer>
-                        <ScoreBoard letters={data.WINS_ONE} score={1} />
-                        <ScoreBoard letters={data.LOSSES_ONE} score={1} />
-                    </ScoreContainer>
-                </InnerContainer>
+                <InnerContainer></InnerContainer>
             </AnimatedBorder>
         </MainContainer>
     );

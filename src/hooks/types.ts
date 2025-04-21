@@ -17,8 +17,8 @@ export type ChatMessage = {
 export type GameContextType = {
     playerId: GameEnum;
     setPlayerId: React.Dispatch<React.SetStateAction<GameEnum>>;
-    playerName: string;
-    setPlayerName: React.Dispatch<React.SetStateAction<string>>;
+    disabled: GameEnum;
+    setDisabled: React.Dispatch<React.SetStateAction<GameEnum>>;
     playerOneData: PlayerDataType;
     setPlayerOneData: React.Dispatch<React.SetStateAction<PlayerDataType>>;
     playerTwoData: PlayerDataType;

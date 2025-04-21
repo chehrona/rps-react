@@ -10,16 +10,18 @@ import {
     faHandPeace,
 } from '@fortawesome/free-solid-svg-icons';
 
-// Types
-import { ChoiceBoardProps } from './types';
-
 // Styled components
 import { IconContainer } from './choiceBoardStyles';
 import { CustomIcon } from '../playerBoard/playerBoardStyles';
 import { CustomButton } from '../nameBar/nameBarStyles';
+import { GameEnum } from '../../hooks/types';
 
-const ChoiceBoard: React.FC<ChoiceBoardProps> = ({ choice, setChoice }) => {
-    const { playerId, turn } = useGame();
+const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
+    playerNumber,
+}) => {
+    const { playerId, turn, playerOneData, playerTwoData, disabled } =
+        useGame();
+    const playerData = playerId === 1 ? playerOneData : playerTwoData;
 
     const handleClick = (choice: 'rock' | 'paper' | 'scissors') => {
         if (playerId === 3 || turn !== playerId) return;
@@ -34,7 +36,7 @@ const ChoiceBoard: React.FC<ChoiceBoardProps> = ({ choice, setChoice }) => {
     };
 
     const renderChoice = () => {
-        switch (choice) {
+        switch (playerData.choice) {
             case 'rock':
                 return (
                     <CustomIcon
@@ -79,7 +81,11 @@ const ChoiceBoard: React.FC<ChoiceBoardProps> = ({ choice, setChoice }) => {
         }
     };
 
-    return <IconContainer>{renderChoice()}</IconContainer>;
+    return (
+        <IconContainer $disabled={playerNumber !== disabled}>
+            {renderChoice()}
+        </IconContainer>
+    );
 };
 
 export default ChoiceBoard;

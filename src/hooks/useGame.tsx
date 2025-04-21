@@ -25,8 +25,8 @@ export const PlayerTwoData = {
 const GameContext = createContext<GameContextType>({
     playerId: 3,
     setPlayerId: () => {},
-    playerName: '',
-    setPlayerName: () => {},
+    disabled: 3,
+    setDisabled: () => {},
     playerOneData: PlayerOneData,
     setPlayerOneData: () => {},
     playerTwoData: PlayerTwoData,
@@ -45,7 +45,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
     const [isPlayerOneConnected, setIsPlayerOneConnected] = useState(false);
     const [isPlayerTwoConnected, setIsPlayerTwoConnected] = useState(false);
     const [playerId, setPlayerId] = useState<GameEnum>(3);
-    const [playerName, setPlayerName] = useState<string>('');
+    const [disabled, setDisabled] = useState<GameEnum>(3);
     const [playerOneData, setPlayerOneData] =
         useState<PlayerDataType>(PlayerOneData);
     const [playerTwoData, setPlayerTwoData] =
@@ -58,8 +58,8 @@ export const GameProvider = ({ children }: GameProviderProps) => {
             value={{
                 playerId,
                 setPlayerId,
-                playerName,
-                setPlayerName,
+                disabled,
+                setDisabled,
                 playerOneData,
                 setPlayerOneData,
                 playerTwoData,
