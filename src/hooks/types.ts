@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 
 export type GameEnum = 1 | 2 | 3;
+export type ChoiceEnum = 'r' | 'p' | 's' | '';
 
 export type PlayerDataType = {
     name: string;
     wins: number;
     losses: number;
-    choice: string;
+    choice: ChoiceEnum;
 };
 
 export type ChatMessage = {

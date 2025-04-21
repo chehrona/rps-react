@@ -6,20 +6,21 @@ import {
     PlayerDataType,
     GameProviderProps,
     GameContextType,
+    ChoiceEnum,
 } from './types';
 
 export const PlayerOneData = {
     name: 'Player 1',
     wins: 0,
     losses: 0,
-    choice: '',
+    choice: '' as ChoiceEnum,
 };
 
 export const PlayerTwoData = {
     name: 'Player 2',
     wins: 0,
     losses: 0,
-    choice: '',
+    choice: '' as ChoiceEnum,
 };
 
 const GameContext = createContext<GameContextType>({

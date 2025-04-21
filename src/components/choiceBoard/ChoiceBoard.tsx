@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { db } from '../../utils/firebase';
+import { db, turnRef } from '../../utils/firebase';
 import { update, ref } from 'firebase/database';
 import { useGame } from '../../hooks/useGame';
 // Native components
@@ -14,41 +14,52 @@ import {
 import { IconContainer } from './choiceBoardStyles';
 import { CustomIcon } from '../playerBoard/playerBoardStyles';
 import { CustomButton } from '../nameBar/nameBarStyles';
-import { GameEnum } from '../../hooks/types';
+import { ChoiceEnum, GameEnum } from '../../hooks/types';
 
 const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
     playerNumber,
 }) => {
-    const { playerId, turn, playerOneData, playerTwoData, disabled } =
-        useGame();
+    const {
+        playerId,
+        turn,
+        playerOneData,
+        playerTwoData,
+        disabled,
+        isPlayerOneConnected,
+        isPlayerTwoConnected,
+    } = useGame();
     const playerData = playerId === 1 ? playerOneData : playerTwoData;
+    const canChoose =
+        disabled !== playerNumber ||
+        !isPlayerOneConnected ||
+        !isPlayerTwoConnected;
 
-    const handleClick = (choice: 'rock' | 'paper' | 'scissors') => {
+    const handleClick = (choice: ChoiceEnum) => {
         if (playerId === 3 || turn !== playerId) return;
 
         update(ref(db, `players/${playerId}`), {
             choice,
         });
 
-        update(ref(db), {
+        update(turnRef, {
             turn: playerId === 1 ? 2 : 3,
         });
     };
 
     const renderChoice = () => {
         switch (playerData.choice) {
-            case 'rock':
+            case 'r':
                 return (
                     <CustomIcon
                         icon={faHandFist}
                         $color={'var(--primary-yellow)'}
                     />
                 );
-            case 'paper':
+            case 'p':
                 return (
                     <CustomIcon icon={faHand} $color={'var(--primary-green)'} />
                 );
-            case 'scissors':
+            case 's':
                 return (
                     <CustomIcon
                         icon={faHandPeace}
@@ -58,19 +69,19 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
             default:
                 return (
                     <>
-                        <CustomButton onClick={() => handleClick('rock')}>
+                        <CustomButton onClick={() => handleClick('r')}>
                             <CustomIcon
                                 icon={faHandFist}
                                 $color={'var(--primary-yellow)'}
                             />
                         </CustomButton>
-                        <CustomButton onClick={() => handleClick('paper')}>
+                        <CustomButton onClick={() => handleClick('p')}>
                             <CustomIcon
                                 icon={faHand}
                                 $color={'var(--primary-green)'}
                             />
                         </CustomButton>
-                        <CustomButton onClick={() => handleClick('scissors')}>
+                        <CustomButton onClick={() => handleClick('s')}>
                             <CustomIcon
                                 icon={faHandPeace}
                                 $color={'var(--primary-orange)'}
@@ -82,9 +93,7 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
     };
 
     return (
-        <IconContainer $disabled={playerNumber !== disabled}>
-            {renderChoice()}
-        </IconContainer>
+        <IconContainer $disabled={canChoose}>{renderChoice()}</IconContainer>
     );
 };
 

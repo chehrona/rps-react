@@ -13,8 +13,10 @@ export const IconContainer = styled.div<{ $disabled: boolean }>`
         $disabled
             ? css`
                   pointer-events: none;
+                  opacity: 0.7;
               `
             : css`
                   pointer-events: all;
+                  opacity: 1;
               `}
 `;
