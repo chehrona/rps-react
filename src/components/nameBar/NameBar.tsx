@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { ref, set, onDisconnect, update } from 'firebase/database';
 import { db } from '../../utils/firebase';
 
@@ -22,7 +22,18 @@ import {
 const NameBar: React.FC = () => {
     const [input, setInput] = useState('');
     const [isInputDisabled, setIsInputDisabled] = useState(false);
-    const { isPlayerOneConnected, setDisabled } = useGame();
+    const { isPlayerOneConnected, isPlayerTwoConnected, setDisabled, setTurn } =
+        useGame();
+
+    useEffect(() => {
+        if (isPlayerOneConnected && isPlayerTwoConnected) {
+            set(turnRef, {
+                turn: 1,
+            });
+
+            setTurn(1);
+        }
+    }, [isPlayerOneConnected, isPlayerTwoConnected]);
 
     const onNameEntered = () => {
         if (input === '') {
@@ -36,6 +47,7 @@ const NameBar: React.FC = () => {
                 name: input,
                 losses: 0,
                 wins: 0,
+                choice: '',
             });
 
             setDisabled(2);
@@ -44,10 +56,7 @@ const NameBar: React.FC = () => {
                 name: input,
                 losses: 0,
                 wins: 0,
-            });
-
-            set(turnRef, {
-                turn: 1,
+                choice: '',
             });
 
             setDisabled(1);

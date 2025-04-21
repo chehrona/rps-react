@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { db, turnRef } from '../../utils/firebase';
-import { update, ref } from 'firebase/database';
+import { playerOneRef, playerTwoRef, turnRef } from '../../utils/firebase';
+import { update, get } from 'firebase/database';
 import { useGame } from '../../hooks/useGame';
 // Native components
 import {
@@ -21,12 +21,15 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
 }) => {
     const {
         playerId,
-        turn,
         playerOneData,
         playerTwoData,
         disabled,
         isPlayerOneConnected,
         isPlayerTwoConnected,
+        setPlayerTwoData,
+        setPlayerOneData,
+        turn,
+        setTurn,
     } = useGame();
     const playerData = playerId === 1 ? playerOneData : playerTwoData;
     const canChoose =
@@ -35,15 +38,27 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
         !isPlayerTwoConnected;
 
     const handleClick = (choice: ChoiceEnum) => {
-        if (playerId === 3 || turn !== playerId) return;
+        if (turn === 1) {
+            update(playerOneRef, {
+                choice: choice,
+            });
 
-        update(ref(db, `players/${playerId}`), {
-            choice,
-        });
+            update(turnRef, {
+                turn: 2,
+            });
+        } else if (turn === 2) {
+            update(playerTwoRef, {
+                choice: choice,
+            });
 
-        update(turnRef, {
-            turn: playerId === 1 ? 2 : 3,
-        });
+            update(turnRef, {
+                turn: 1,
+            });
+        } else {
+            update(turnRef, {
+                turn: 3,
+            });
+        }
     };
 
     const renderChoice = () => {

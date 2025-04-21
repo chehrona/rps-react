@@ -5,8 +5,8 @@ import ChatBoard from '../chatBoard/ChatBoard';
 import { BodyContainer } from './gameBodyStyles';
 
 import { useGame } from '../../hooks/useGame';
-import { onValue, ref } from 'firebase/database';
-import { db, playersRef } from '../../utils/firebase';
+import { onValue } from 'firebase/database';
+import { playersRef, turnRef } from '../../utils/firebase';
 
 const GameBody: React.FC = () => {
     const {
@@ -14,29 +14,23 @@ const GameBody: React.FC = () => {
         setPlayerTwoData,
         setPlayerId,
         setIsPlayerOneConnected,
-        playerOneData,
-        playerTwoData,
         setIsPlayerTwoConnected,
-        isPlayerOneConnected,
-        isPlayerTwoConnected,
+        setTurn,
     } = useGame();
 
     useEffect(() => {
         // Attach event listener once
         onValue(playersRef, (snapshot) => {
-            const dbData = snapshot.val();
+            const playerData = snapshot.val();
 
-            console.log(dbData, 'inside on value');
-
-            if (dbData === null) {
+            if (playerData === null) {
                 return;
             }
 
             if (snapshot.child('1').exists()) {
-                console.log(dbData['1'].name, 'here 1');
                 setPlayerOneData((prev) => ({
                     ...prev,
-                    name: dbData['1'].name,
+                    name: playerData['1'].name,
                 }));
 
                 setPlayerId(1);
@@ -44,16 +38,24 @@ const GameBody: React.FC = () => {
             }
 
             if (snapshot.child('2').exists()) {
-                console.log('here 2');
-
                 setPlayerTwoData((prev) => ({
                     ...prev,
-                    name: dbData['2'].name,
+                    name: playerData['2'].name,
                 }));
 
                 setPlayerId(2);
                 setIsPlayerTwoConnected(true);
             }
+        });
+
+        onValue(turnRef, (snapshot) => {
+            const turnData = snapshot.val();
+
+            if (turnData === null) {
+                return;
+            }
+
+            setTurn(turnData.turn);
         });
     }, []);
 
