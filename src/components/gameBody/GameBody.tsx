@@ -1,34 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
-// Hooks
-import { useGlobalData } from '../../hooks/usePlayerData';
-
-// Data
-import data from '../../data.json';
-
-import PlayerBoardOne from '../playerBoard/PlayerBoardOne';
-import PlayerBoardTwo from '../playerBoard/PlayerBoardTwo';
-
-// Styled components
-import { BodyContainer } from './gameBodyStyles';
+import PlayerBoard from '../playerBoard/PlayerBoard';
 import ChatBoard from '../chatBoard/ChatBoard';
+import { BodyContainer } from './gameBodyStyles';
+
+import { useGame } from '../../hooks/useGame';
+import { onValue, ref } from 'firebase/database';
+import { db, playersRef } from '../../utils/firebase';
 
 const GameBody: React.FC = () => {
-    const { players } = useGlobalData();
-    const [loading, setLoading] = useState('');
+    const {
+        setPlayerOneData,
+        setPlayerTwoData,
+        setPlayerId,
+        setIsPlayerOneConnected,
+        playerOneData,
+        playerTwoData,
+        setIsPlayerTwoConnected,
+        isPlayerOneConnected,
+        isPlayerTwoConnected,
+    } = useGame();
 
-    if (
-        players.one.choice.length &&
-        players.two.connected &&
-        !players.two.choice.length
-    ) {
-        setLoading('2');
-    }
+    useEffect(() => {
+        // Attach event listener once
+        onValue(playersRef, (snapshot) => {
+            const dbData = snapshot.val();
+
+            console.log(dbData, 'inside on value');
+
+            if (dbData === null) {
+                return;
+            }
+
+            if (snapshot.child('1').exists()) {
+                console.log(dbData['1'].name, 'here 1');
+                setPlayerOneData((prev) => ({
+                    ...prev,
+                    name: dbData['1'].name,
+                }));
+
+                setPlayerId(1);
+                setIsPlayerOneConnected(true);
+            }
+
+            if (snapshot.child('2').exists()) {
+                console.log('here 2');
+
+                setPlayerTwoData((prev) => ({
+                    ...prev,
+                    name: dbData['2'].name,
+                }));
+
+                setPlayerId(2);
+                setIsPlayerTwoConnected(true);
+            }
+        });
+    }, []);
+
     return (
         <BodyContainer>
-            <PlayerBoardOne />
+            <PlayerBoard playerNumber={1} />
             <ChatBoard />
-            <PlayerBoardTwo loading={loading} />
+            <PlayerBoard playerNumber={2} />
         </BodyContainer>
     );
 };

@@ -69,15 +69,15 @@
     ],
     "WINS_TWO": [
         {
-            "letter": "Wi",
+            "letter": "W",
             "delay": 2
         },
         {
-            "letter": "n",
+            "letter": "i",
             "delay": 5
         },
         {
-            "letter": "s",
+            "letter": "ns",
             "delay": 0
         }
     ],

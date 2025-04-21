@@ -1,20 +1,39 @@
-export type PlayerObj = {
-    id: 1 | 2;
+import { ReactNode } from 'react';
+
+export type GameEnum = 1 | 2 | 3;
+
+export type PlayerDataType = {
     name: string;
-    connected: boolean;
-    choice: string;
     wins: number;
     losses: number;
+    choice: string;
 };
 
-export type PlayersObj = {
-    one: PlayerObj;
-    two: PlayerObj;
+export type ChatMessage = {
+    playerId: string;
+    message: string;
 };
 
-export type DataContextType = {
-    turn: 1 | 2 | 3;
-    setTurn: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
-    players: PlayersObj;
-    setPlayers: React.Dispatch<React.SetStateAction<PlayersObj>>;
+export type GameContextType = {
+    playerId: GameEnum;
+    setPlayerId: React.Dispatch<React.SetStateAction<GameEnum>>;
+    playerName: string;
+    setPlayerName: React.Dispatch<React.SetStateAction<string>>;
+    playerOneData: PlayerDataType;
+    setPlayerOneData: React.Dispatch<React.SetStateAction<PlayerDataType>>;
+    playerTwoData: PlayerDataType;
+    setPlayerTwoData: React.Dispatch<React.SetStateAction<PlayerDataType>>;
+    turn: GameEnum;
+    setTurn: React.Dispatch<React.SetStateAction<GameEnum>>;
+    isPlayerOneConnected: boolean;
+    setIsPlayerOneConnected: React.Dispatch<React.SetStateAction<boolean>>;
+    isPlayerTwoConnected: boolean;
+    setIsPlayerTwoConnected: React.Dispatch<React.SetStateAction<boolean>>;
+
+    // chat: ChatMessage[];
+    // setChat: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+};
+
+export type GameProviderProps = {
+    children: ReactNode;
 };

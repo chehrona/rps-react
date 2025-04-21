@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { ref, set } from 'firebase/database';
+import React, { ChangeEvent, useState } from 'react';
+import { ref, set, onDisconnect, update } from 'firebase/database';
 import { db } from '../../utils/firebase';
 
+import { playerOneRef, playerTwoRef, turnRef } from '../../utils/firebase';
+
 // Hooks
-import { useGlobalData } from '../../hooks/usePlayerData';
+import { useGame } from '../../hooks/useGame';
+import { GameEnum } from '../../hooks/types';
 
 // Components
 import AnimatedBorder from '../animatedBorder/AnimatedBorder';
@@ -17,39 +20,68 @@ import {
 } from './nameBarStyles';
 
 const NameBar: React.FC = () => {
-    const { players } = useGlobalData();
-    const [playerName, setPlayerName] = useState('');
+    const [input, setInput] = useState('');
+    const [isInputDisabled, setIsInputDisabled] = useState(false);
+    const {
+        isPlayerOneConnected,
+        isPlayerTwoConnected,
+        setPlayerOneData,
+        setPlayerId,
+        playerId,
+        setPlayerTwoData,
+        setTurn,
+    } = useGame();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPlayerName(e.target.value);
-    };
+    const onNameEntered = () => {
+        if (input === '') {
+            // createsModals('Please enter your name');
+            return;
+        }
 
-    const handleClick = () => {
-        if (players.one.connected) {
-            set(ref(db, 'players/2'), {
-                name: playerName,
+        // If the player 1 slot is occupied, immediately put the entered name to the opponent screen to prevent manual selection.
+        if (isPlayerOneConnected) {
+            set(playerTwoRef, {
+                name: input,
                 losses: 0,
                 wins: 0,
             });
         } else {
-            set(ref(db, 'players/1'), {
-                name: playerName,
+            set(playerOneRef, {
+                name: input,
                 losses: 0,
                 wins: 0,
             });
         }
 
-        setPlayerName('');
+        // Prevents entering another name.
+        setIsInputDisabled(true);
+        setInput('');
     };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setInput(e.target.value.trim());
+    };
+
+    const handleClick = () => {
+        onNameEntered();
+    };
+
+    // const handelKeyPress = (e: KeyboardEvent<HTMLInputElement>, ) => {
+    //     if (e.keyCode === '13') {
+    //         onNameEntered();
+    //     }
+    // };
 
     return (
         <MainContainer>
             <AnimatedBorder delay={5}>
-                <InnerContainer>
+                <InnerContainer $disabled={isInputDisabled}>
                     <CustomInputField
                         placeholder={'Your name'}
                         onChange={(e) => handleChange(e)}
-                        value={playerName}
+                        value={input}
+                        // onKeyDown={(e) => handelKeyPress(e)}
                     />
                     <CustomButton onClick={handleClick}>Start</CustomButton>
                 </InnerContainer>

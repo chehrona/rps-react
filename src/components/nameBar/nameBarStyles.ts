@@ -349,12 +349,22 @@ export const MainContainer = styled.div`
     margin: 1rem 0rem;
 `;
 
-export const InnerContainer = styled.div`
+export const InnerContainer = styled.div<{ $disabled: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
+    ${({ $disabled }) =>
+        $disabled
+            ? css`
+                  pointer-events: none;
+                  opacity: 0.7;
+              `
+            : css`
+                  pointer-events: all;
+                  opacity: 1;
+              `}
 `;
 
 export const CustomInputField = styled.input`
