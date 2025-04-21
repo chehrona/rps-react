@@ -32,7 +32,7 @@ const GameContext = createContext<GameContextType>({
     setPlayerOneData: () => {},
     playerTwoData: PlayerTwoData,
     setPlayerTwoData: () => {},
-    turn: 1,
+    turn: 3,
     setTurn: () => {},
     // chat: [],
     // setChat: () => {},
@@ -51,7 +51,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
         useState<PlayerDataType>(PlayerOneData);
     const [playerTwoData, setPlayerTwoData] =
         useState<PlayerDataType>(PlayerTwoData);
-    const [turn, setTurn] = useState<GameEnum>(1);
+    const [turn, setTurn] = useState<GameEnum>(3);
     // const [chat, setChat] = useState<ChatMessage[]>([]);
 
     return (
