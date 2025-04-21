@@ -26,10 +26,7 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
         disabled,
         isPlayerOneConnected,
         isPlayerTwoConnected,
-        setPlayerTwoData,
-        setPlayerOneData,
         turn,
-        setTurn,
     } = useGame();
     const playerData = playerId === 1 ? playerOneData : playerTwoData;
     const canChoose =
