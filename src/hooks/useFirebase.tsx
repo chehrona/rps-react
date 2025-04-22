@@ -10,8 +10,6 @@ export const useFirebase = () => {
         setIsPlayerOneConnected,
         setIsPlayerTwoConnected,
         setTurn,
-        playerOneData,
-        playerTwoData,
     } = useGame();
 
     useEffect(() => {
@@ -42,15 +40,6 @@ export const useFirebase = () => {
             if (turnData === null) return;
 
             setTurn(turnData.turn);
-
-            if (
-                playerOneData.choice.length !== 0 &&
-                playerTwoData.choice.length !== 0 &&
-                turnData.turn === 3
-            ) {
-                // gameRules();
-                // setTimeout(resetGame, 4000);
-            }
         });
-    }, [playerOneData.choice, playerTwoData.choice]);
+    }, []);
 };
