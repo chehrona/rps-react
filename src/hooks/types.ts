@@ -1,13 +1,12 @@
 import { ReactNode } from 'react';
 
 export type GameEnum = 1 | 2 | 3;
-export type ChoiceEnum = 'r' | 'p' | 's' | '' | 'w' | 'c';
 
 export type PlayerDataType = {
     name: string;
     wins: number;
     losses: number;
-    choice: ChoiceEnum;
+    choice: string;
 };
 
 export type ChatMessage = {
@@ -28,6 +27,10 @@ export type GameContextType = {
     setTurn: React.Dispatch<React.SetStateAction<GameEnum>>;
     isPlayerOneConnected: boolean;
     setIsPlayerOneConnected: React.Dispatch<React.SetStateAction<boolean>>;
+    hasPlayerOneChosen: boolean;
+    setHasPlayerOneChosen: React.Dispatch<React.SetStateAction<boolean>>;
+    hasPlayerTwoChosen: boolean;
+    setHasPlayerTwoChosen: React.Dispatch<React.SetStateAction<boolean>>;
     isPlayerTwoConnected: boolean;
     setIsPlayerTwoConnected: React.Dispatch<React.SetStateAction<boolean>>;
 

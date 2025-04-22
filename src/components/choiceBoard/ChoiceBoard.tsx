@@ -14,7 +14,7 @@ import {
 import { IconContainer } from './choiceBoardStyles';
 import { CustomIcon } from '../playerBoard/playerBoardStyles';
 import { CustomButton } from '../nameBar/nameBarStyles';
-import { ChoiceEnum, GameEnum } from '../../hooks/types';
+import { GameEnum } from '../../hooks/types';
 
 const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
     playerNumber,
@@ -35,7 +35,7 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
         !isPlayerOneConnected ||
         !isPlayerTwoConnected;
 
-    const handleClick = (choice: ChoiceEnum) => {
+    const handleClick = (choice: string) => {
         if (turn === 1) {
             update(playerOneRef, {
                 choice: choice,
@@ -49,10 +49,6 @@ const ChoiceBoard: React.FC<{ playerNumber: GameEnum }> = ({
                 choice: choice,
             });
 
-            update(turnRef, {
-                turn: 1,
-            });
-        } else {
             update(turnRef, {
                 turn: 3,
             });

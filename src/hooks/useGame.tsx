@@ -6,21 +6,20 @@ import {
     PlayerDataType,
     GameProviderProps,
     GameContextType,
-    ChoiceEnum,
 } from './types';
 
 export const PlayerOneData = {
     name: 'Player 1',
     wins: 0,
     losses: 0,
-    choice: '' as ChoiceEnum,
+    choice: '',
 };
 
 export const PlayerTwoData = {
     name: 'Player 2',
     wins: 0,
     losses: 0,
-    choice: '' as ChoiceEnum,
+    choice: '',
 };
 
 const GameContext = createContext<GameContextType>({
@@ -40,11 +39,17 @@ const GameContext = createContext<GameContextType>({
     setIsPlayerOneConnected: () => {},
     isPlayerTwoConnected: false,
     setIsPlayerTwoConnected: () => {},
+    hasPlayerOneChosen: false,
+    setHasPlayerOneChosen: () => {},
+    hasPlayerTwoChosen: false,
+    setHasPlayerTwoChosen: () => {},
 });
 
 export const GameProvider = ({ children }: GameProviderProps) => {
     const [isPlayerOneConnected, setIsPlayerOneConnected] = useState(false);
     const [isPlayerTwoConnected, setIsPlayerTwoConnected] = useState(false);
+    const [hasPlayerOneChosen, setHasPlayerOneChosen] = useState(false);
+    const [hasPlayerTwoChosen, setHasPlayerTwoChosen] = useState(false);
     const [playerId, setPlayerId] = useState<GameEnum>(3);
     const [disabled, setDisabled] = useState<GameEnum>(3);
     const [playerOneData, setPlayerOneData] =
@@ -71,6 +76,10 @@ export const GameProvider = ({ children }: GameProviderProps) => {
                 setIsPlayerOneConnected,
                 isPlayerTwoConnected,
                 setIsPlayerTwoConnected,
+                hasPlayerOneChosen,
+                setHasPlayerOneChosen,
+                hasPlayerTwoChosen,
+                setHasPlayerTwoChosen,
                 // chat,
                 // setChat,
             }}
